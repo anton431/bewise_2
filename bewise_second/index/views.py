@@ -1,10 +1,10 @@
+from django.http import FileResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Person, Audio
 from .serializers import NameSerializer, AudioSerializer
 from django.core.exceptions import ValidationError
-from os import path
-from pydub import AudioSegment
+from .utils import convert_to_mp3
 
 
 class CreatePersonAPIView(APIView):
@@ -28,7 +28,17 @@ class AddAudioAPIView(APIView):
 
         if str(token) != str(token_user):
             return Response(ValidationError('Неверный токен'))
-
         aud = Audio.objects.create(person_id=person, audio=audio)
 
+        audio_mp3 = convert_to_mp3(aud.audio)
+
+        aud.audio = audio_mp3
+        aud.save()
+
         return Response({'URL': f'http://localhost:8000/record?id={aud.pk}&user={aud.person_id}'})
+
+# def download(request, id):
+#     obj = Audio.objects.get(id=request.data['id'])
+#     filename = obj.audio.path
+#     response = FileResponse(open(filename, 'rb'))
+#     return response

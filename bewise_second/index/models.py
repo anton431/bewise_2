@@ -15,7 +15,7 @@ class Person(models.Model):
         verbose_name_plural = 'Пользователи'
 
 class Audio(models.Model):
-    audio = models.FileField('Aудио', upload_to='audio/%Y/%m/%d/', validators=[FileExtensionValidator(allowed_extensions=['wav'])])
+    audio = models.FileField('Aудио', upload_to='audio', validators=[FileExtensionValidator(allowed_extensions=['wav'])])
     audio_token = models.UUIDField('Токен аудио', default=uuid.uuid4, editable=False, unique=True)
     person = models.ForeignKey(Person, related_name='person', on_delete=models.CASCADE, verbose_name='Пользователь',  blank=True)
 
