@@ -8,7 +8,7 @@ class Person(models.Model):
     token = models.UUIDField('Токен пользователя', default=uuid.uuid4, editable=False, unique=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return str(self.pk)
 
     class Meta:
         verbose_name = 'Пользователь'
