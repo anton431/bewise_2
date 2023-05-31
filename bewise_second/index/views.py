@@ -26,13 +26,13 @@ class AddAudioAPIView(APIView):
         serializer = AudioSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        if str(token) != str(token_user):
+        if str(token) != str(token_user): # проверка на токен
             return Response(ValidationError('Неверный токен'))
         aud = Audio.objects.create(person_id=person, audio=audio)
 
-        audio_mp3 = convert_to_mp3(aud.audio)
+        audio_mp3 = convert_to_mp3(aud.audio) # из utils
 
-        aud.audio = audio_mp3
+        aud.audio = audio_mp3 # пересохраняем в БД
         aud.save()
 
         return Response({'URL': f'http://localhost:8000/record_id={aud.pk}&user_id={aud.person_id}'})
