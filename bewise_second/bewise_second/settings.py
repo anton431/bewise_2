@@ -25,8 +25,7 @@ load_dotenv(find_dotenv())
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-w8k1al9j-a%fzzlvk*+=hou^@l#x77l1omsp0np3$r$92)cfm&'
-
+SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -83,11 +82,11 @@ WSGI_APPLICATION = 'bewise_second.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bewise',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': os.getenv("PASSWORD"),
-        'HOST': 'localhost',
-        'PORT': '5433'
+        'HOST': 'postgres',
+        'PORT': ''
     }
 }
 

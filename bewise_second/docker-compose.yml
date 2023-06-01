@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    volumes:
+      - db:/var/lib/postgresql/data/
+  web:
+    build: .
+    command:  bash -c "python manage.py makemigrations && 
+              python manage.py migrate &&
+              python manage.py runserver 0.0.0.0:8000 "
+    ports:
+      - 8000:8000
+    environment:
+      - DJANGO_SETTINGS_MODULE=bewise_second.settings
+    volumes:
+      - .:/usr/src/bewise_second/
+    env_file:
+      - ./.env
+    depends_on:
+      - postgres
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: demo-pgadmin-2
+    depends_on:
+      - postgres
+    ports:
+      - "5051:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: root
+    restart: always
+
+volumes:
+  db:
+    driver: local
