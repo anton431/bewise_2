@@ -80,9 +80,9 @@ root
 >![img.png](img/img_3.png) Цель достигнута
 
 8. Можно выполнять запросы:
-> ![img.png](img/img_4.png) <a href=http://127.0.0.1:8000/api/v1/create_user/>Запрос</a> на создание пользователя
+> ![img.png](img/img_4.png) <a href=http://127.0.0.1:8000/api/v1/create_user>Запрос</a> на создание пользователя
 
-> ![img.png](img/img_5.png) ![img_1.png](img/img_6.png) <a href=http://127.0.0.1:8000/api/v1/add_audio/>Запрос</a> на добавление аудиозаписи
+> ![img.png](img/img_5.png) ![img_1.png](img/img_6.png) <a href=http://127.0.0.1:8000/api/v1/add_audio>Запрос</a> на добавление аудиозаписи
 
 > ![img_2.png](img/img_7.png) Возможность слушать и загрузить аудио в mp3 формате по URL типа: http://localhost:8000/record_id=id&user_id=user_id
 
