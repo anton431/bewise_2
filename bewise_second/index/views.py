@@ -38,7 +38,7 @@ class AddAudioAPIView(APIView):
         return Response({'URL': f'http://localhost:8000/record_id={aud.pk}&user_id={aud.person_id}'})
 
 def download(request, id, user_id):
-    obj = Audio.objects.get(id=id)
+    obj = Audio.objects.get(id=id, person_id=user_id)
     filename = obj.audio.path
     response = FileResponse(open(filename, 'rb'))
     return response
