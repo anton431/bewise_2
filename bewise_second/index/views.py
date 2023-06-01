@@ -20,14 +20,14 @@ class AddAudioAPIView(APIView):
     serializer_class = AudioSerializer
     def post(self, request):
         audio = request.data['audio']
-        person = int(request.data['person'])
+        person = int(request.data['person_id'])
         token = request.data['token']
-        token_user = Person.objects.filter(pk=person).first().token
+        token_user = Person.objects.filter(pk=person, token=token).first()
         serializer = AudioSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        if str(token) != str(token_user): # проверка на токен
-            return Response(ValidationError('Неверный токен'))
+        if not token_user: # проверка на токен
+            return Response(ValidationError('Неверный токен и/или индефикатор пользователя'))
         aud = Audio.objects.create(person_id=person, audio=audio)
 
         audio_mp3 = convert_to_mp3(aud.audio) # из utils

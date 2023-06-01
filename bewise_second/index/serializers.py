@@ -10,7 +10,9 @@ class NameSerializer(serializers.ModelSerializer):
 
 class AudioSerializer(serializers.ModelSerializer):
     token = serializers.CharField(max_length=40)
+    person_id = serializers.IntegerField()
 
     class Meta:
         model = Audio
-        fields = ('audio', 'person', 'token')
+        fields = ('audio', 'person_id', 'token')
+

@@ -10,7 +10,6 @@ class PersonAdmin(admin.ModelAdmin):
 
 class AudioAdmin(admin.ModelAdmin):
     list_display = ('id', 'audio', 'audio_uuid', 'person')
-    list_display_links = ('id',)
     search_fields = ('id', 'person')
     list_filter = ('person',)
 
