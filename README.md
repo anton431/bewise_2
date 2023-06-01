@@ -24,7 +24,7 @@ Web framework: __Django & DRF__<br>
 
 ## urls
 
-> - /record_id=id&user_id=user_id — прослушивание и загрузка аудиозаписи
+> - record_id=id&user_id=user_id — прослушивание и загрузка аудиозаписи
 
 ## Приватная информация
 
@@ -84,7 +84,7 @@ root
 
 > ![img.png](img/img_5.png) ![img_1.png](img/img_6.png) <a href=http://127.0.0.1:8000/api/v1/add_audio/>Запрос</a> на добавление аудиозаписи
 
-> ![img_2.png](img/img_7.png) Возможность слушать и загрузить аудио в mp3 формате по URL типа: http://localhost:8000/record_id=<int>&user_id=<int>
+> ![img_2.png](img/img_7.png) Возможность слушать и загрузить аудио в mp3 формате по URL типа: http://localhost:8000/record_id=id&user_id=user_id
 
 9. Запуск без docker:
 - выполните пункты 1 и 2;
